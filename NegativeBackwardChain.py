@@ -3,17 +3,14 @@ import pandas as pd
 df = pd.read_csv('Dataset/HeartDiseaseTrain-Test.csv')
 
 def rule_based_prediction(row):
-        
-        if row['chest_pain_type'] == 'Typical angina' and row['vessels_colored_by_flourosopy'] == 'Two' or 'Three' and row['oldpeak'] >= 2 and row['slope'] == 'Downsloping':
-             return 1
-        elif row['chest_pain_type'] == 'Asymptomatic' and row['fasting_blood_sugar'] == 'Greater than 120 mg/ml' and row['cholestoral'] > 240 and row['rest_ecg'] == 'ST-T wave abnormality':
-             return 1
-        elif row['chest_pain_type'] == 'Non-anginal pain' and row['vessels_colored_by_flourosopy'] == 'One' and row['slope'] == 'Flat' and row['cholestoral'] > 240:
-             return 1
-        elif row['age'] < 45 and row['thalassemia'] == 'Reversable Defect' and row['rest_ecg'] == 'ST-T wave abnormality':
-             return 1
-        else:
-             return 0
+    if row['chest_pain_type'] == 'Asymptomatic' and row['age'] < 45 and row['vessels_colored_by_flourosopy'] == 'Zero' and row['cholestoral'] < 200:
+        return 0
+    elif row['age'] > 45 and row['cholestoral'] < 200 and row['chest_pain_type'] == 'Asymptomatic':
+        return 0
+    elif row['chest_pain_type'] == 'Non-anginal pain'and row['oldpeak'] < 0.2 and row['rest_ecg'] == 'Normal':
+        return 0
+    else:
+        return 1
    
 
 # Apply the rules to the dataset
