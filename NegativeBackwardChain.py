@@ -31,6 +31,17 @@ for index,row in df.iterrows():
     elif row['predicted_target'] == 0 and row['target'] == 1:
         falseNegative += 1
 
+#  made via chat GPT - Section 
+confusion_matrix = pd.DataFrame([[truePositive, falseNegative],
+                                 [falsePositive, trueNegative]],
+                                columns=['Predicted 1', 'Predicted 0'],
+                                index=['Actual 1', 'Actual 0'])
+
+print("Confusion Matrix:")
+print(confusion_matrix)
+
+# Made via chat GPT - Section
+
 
 # Evaluate the accuracy
 accuracy = ((truePositive + trueNegative) / (truePositive + trueNegative + falsePositive + falseNegative ))
