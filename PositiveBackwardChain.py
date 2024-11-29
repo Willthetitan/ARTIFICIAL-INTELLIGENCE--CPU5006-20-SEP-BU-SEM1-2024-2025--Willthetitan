@@ -55,6 +55,8 @@ typeOne = ((falsePositive)/(trueNegative + falsePositive))
 typeTwo = ((falseNegative) / (truePositive + falseNegative))
 
 print(f'Accuracy of the rule-based algorithm: {accuracy * 100:.2f}%')
+print(F1Score * 100)
+
 
 # Display a few predictions
 print(df[['age', 'chest_pain_type', 'cholestoral', 'target', 'predicted_target']].head())
